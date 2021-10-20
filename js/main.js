@@ -16,7 +16,7 @@ const OFFERS_AMOUNT = 10;
 // Генерируем данные для массивов
 const createOffer = () => ({
   author: {
-    avatar: `img/avatars/user${0}${getRandomNumber(1, 10)}.png`,
+    avatar: `img/avatars/user${getRandomNumberAvatar(1, 10)}.png`,
   },
   offer: {
     title: TITLES[getRandomNumber(0, TITLES.length-1)],
@@ -38,6 +38,7 @@ const createOffer = () => ({
 });
 // Функция для создания массива из 10 сгенерированных JS-объектов
 const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
+console.log(similarOffers);
 // Основная функция генерации случайных чисел
 function getRandomNumber(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -52,3 +53,15 @@ function getRandomLocation(min, max, digits = 5) {
   const result = Math.random() * (upper - lower) + lower;
   return result.toFixed(digits);
 }
+
+//Функция добовляющая перед однозначными числами 0
+function getRandomNumberAvatar (min, max) {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  if (result < 10) {
+    return "0" + Math.floor(result);
+  }
+  return Math.floor(result);
+}
+
