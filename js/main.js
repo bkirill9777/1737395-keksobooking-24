@@ -9,13 +9,12 @@ const PHOTOS = [
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
-const locationLat = getRandomLocation (35.65000, 35.70000, digits = 5);
-const locationLng = getRandomLocation (139.70000, 139.80000, digits = 5);
-
 const OFFERS_AMOUNT = 10;
 // Генерируем данные для массивов
-const createOffer = () => ({
-  author: {
+const createOffer = () => {
+  const locationLat = getRandomLocation (35.65000, 35.70000);
+  const locationLng = getRandomLocation (139.70000, 139.80000);
+  return { author: {
     avatar: `img/avatars/user${getRandomNumber(1, 10)}.png`,
   },
   offer: {
@@ -35,7 +34,8 @@ const createOffer = () => ({
     lat: locationLat,
     lng: locationLng,
   },
-});
+  };
+};
 // Функция для создания массива из 10 сгенерированных JS-объектов
 const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
 console.log(similarOffers);
@@ -55,4 +55,3 @@ function getRandomLocation(min, max, digits = 5) {
 }
 
 //Функция добовляющая перед однозначными числами 0
-
