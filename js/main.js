@@ -9,18 +9,18 @@ const PHOTOS = [
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
-const lat = getRandomLocation (35.65000, 35.70000, digits = 5);
-const lng = getRandomLocation (139.70000, 139.80000, digits = 5);
+const locationLat = getRandomLocation (35.65000, 35.70000, digits = 5);
+const locationLng = getRandomLocation (139.70000, 139.80000, digits = 5);
 
 const OFFERS_AMOUNT = 10;
 // Генерируем данные для массивов
 const createOffer = () => ({
   author: {
-    avatar: `img/avatars/user${getRandomNumberAvatar(1, 10)}.png`,
+    avatar: `img/avatars/user${getRandomNumber(1, 10)}.png`,
   },
   offer: {
     title: TITLES[getRandomNumber(0, TITLES.length-1)],
-    address: `${lat}, ${lng}`,
+    address: `${locationLat}, ${locationLng}`,
     price: getRandomNumber(1000, 50000),
     type: TYPE[getRandomNumber(0, TYPE.length-1)],
     rooms: getRandomNumber(1, 5),
@@ -32,8 +32,8 @@ const createOffer = () => ({
     photos: PHOTOS[getRandomNumber(0, PHOTOS.length-1)],
   },
   location: {
-    lat: getRandomLocation (35.65000, 35.70000, digits = 5),
-    lng: getRandomLocation (139.70000, 139.80000, digits = 5),
+    lat: locationLat,
+    lng: locationLng,
   },
 });
 // Функция для создания массива из 10 сгенерированных JS-объектов
@@ -55,13 +55,4 @@ function getRandomLocation(min, max, digits = 5) {
 }
 
 //Функция добовляющая перед однозначными числами 0
-function getRandomNumberAvatar (min, max) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  if (result < 10) {
-    return "0" + Math.floor(result);
-  }
-  return Math.floor(result);
-}
 
