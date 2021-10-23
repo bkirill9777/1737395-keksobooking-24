@@ -12,28 +12,33 @@ const PHOTOS = [
 const OFFERS_AMOUNT = 10;
 // Генерируем данные для массивов
 const createOffer = () => {
+  let avatarValue = getRandomNumber(1, 10);
+  if (avatarValue < 10) {
+    avatarValue = '0' + avatarValue;
+  }
   const locationLat = getRandomLocation (35.65000, 35.70000);
   const locationLng = getRandomLocation (139.70000, 139.80000);
-  return { author: {
-    avatar: `img/avatars/user${getRandomNumber(1, 10)}.png`,
-  },
-  offer: {
-    title: TITLES[getRandomNumber(0, TITLES.length-1)],
-    address: `${locationLat}, ${locationLng}`,
-    price: getRandomNumber(1000, 50000),
-    type: TYPE[getRandomNumber(0, TYPE.length-1)],
-    rooms: getRandomNumber(1, 5),
-    guests: getRandomNumber(0, 6),
-    chekin: CHEKIN[getRandomNumber(0, CHEKIN.length-1)],
-    chekout: CHECKOUT[getRandomNumber(0, CHECKOUT.length-1)],
-    features: FEATURES[getRandomNumber(0, FEATURES.length-1)],
-    description: DESCRIPTIONS[getRandomNumber(0, DESCRIPTIONS.length-1)],
-    photos: PHOTOS[getRandomNumber(0, PHOTOS.length-1)],
-  },
-  location: {
-    lat: locationLat,
-    lng: locationLng,
-  },
+  return {
+    author: {
+      avatar: `img/avatars/user${avatarValue}.png`,
+    },
+    offer: {
+      title: TITLES[getRandomNumber(0, TITLES.length-1)],
+      address: `${locationLat}, ${locationLng}`,
+      price: getRandomNumber(1000, 50000),
+      type: TYPE[getRandomNumber(0, TYPE.length-1)],
+      rooms: getRandomNumber(1, 5),
+      guests: getRandomNumber(0, 6),
+      chekin: CHEKIN[getRandomNumber(0, CHEKIN.length-1)],
+      chekout: CHECKOUT[getRandomNumber(0, CHECKOUT.length-1)],
+      features: FEATURES[getRandomNumber(0, FEATURES.length-1)],
+      description: DESCRIPTIONS[getRandomNumber(0, DESCRIPTIONS.length-1)],
+      photos: PHOTOS[getRandomNumber(0, PHOTOS.length-1)],
+    },
+    location: {
+      lat: locationLat,
+      lng: locationLng,
+    },
   };
 };
 // Функция для создания массива из 10 сгенерированных JS-объектов
@@ -53,5 +58,3 @@ function getRandomLocation(min, max, digits = 5) {
   const result = Math.random() * (upper - lower) + lower;
   return result.toFixed(digits);
 }
-
-//Функция добовляющая перед однозначными числами 0
