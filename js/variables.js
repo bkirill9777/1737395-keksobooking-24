@@ -1,3 +1,0 @@
-const OFFERS_AMOUNT = 10;
-
-export {OFFERS_AMOUNT};

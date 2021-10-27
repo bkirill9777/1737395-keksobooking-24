@@ -1,4 +1,4 @@
-import {getRandomNumber, getRandomLocation, getRandomArray} from './function.js';
+import {getRandomNumber, getRandomLocation, getRandomArray} from './utils.js';
 // Генерируем данные для массивов
 const TITLES = ['Выбор квартир', 'Большая светлая квартира', 'Маленькая уютная квартира', 'Квартира в спальном районе'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
