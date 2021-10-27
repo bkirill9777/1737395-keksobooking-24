@@ -42,7 +42,6 @@ const createOffer = () => {
     },
   };
 };
-
 // Основная функция генерации случайных чисел
 function getRandomNumber(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
