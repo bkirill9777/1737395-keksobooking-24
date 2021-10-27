@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 const TITLES = ['Выбор квартир', 'Большая светлая квартира', 'Маленькая уютная квартира', 'Квартира в спальном районе'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHEKIN = ['12.00', '13.00', '14.00'];
@@ -11,6 +10,35 @@ const PHOTOS = [
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 const OFFERS_AMOUNT = 10;
+// Основная функция генерации случайных чисел
+function getRandomNumber(min, max) {
+  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+}
+// Основная функция нахождения числа с плавающей точкой
+function getRandomLocation(min, max, digits = 5) {
+  const lower = Math.min(Math.abs(min), Math.abs(max));
+  const upper = Math.max(Math.abs(min), Math.abs(max));
+  const result = Math.random() * (upper - lower) + lower;
+  return result.toFixed(digits);
+}
+// Функции которые исключают дубликаты
+const getRandomArrayElement = (elements) =>
+  elements[getRandomNumber(0, elements.length - 1)];
+
+function getRandomArray(arrayData) {
+  const counter = getRandomNumber(1, arrayData.length);
+  const array = [];
+  for (let index = 0; index < counter; index++) {
+    const el = getRandomArrayElement(arrayData);
+    if (!array.includes(el)) {
+      array.push(el);
+    }
+  }
+  return array;
+}
 // Генерируем данные для массивов
 const createOffer = () => {
   let avatarValue = getRandomNumber(1, 10);
@@ -42,35 +70,6 @@ const createOffer = () => {
     },
   };
 };
-// Основная функция генерации случайных чисел
-function getRandomNumber(min, max) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-}
-// Основная функция нахождения числа с плавающей точкой
-function getRandomLocation(min, max, digits = 5) {
-  const lower = Math.min(Math.abs(min), Math.abs(max));
-  const upper = Math.max(Math.abs(min), Math.abs(max));
-  const result = Math.random() * (upper - lower) + lower;
-  return result.toFixed(digits);
-}
-// Функции которые исключают дубликаты
-const getRandomArrayElement = (elements) =>
-  elements[getRandomNumber(0, elements.length - 1)];
-
-function getRandomArray(arrayData) {
-  const counter = getRandomNumber(1, arrayData.length);
-  const array = [];
-  for (let index = 0; index < counter; index++) {
-    const el = getRandomArrayElement(arrayData);
-    if (!array.includes(el)) {
-      array.push(el);
-    }
-  }
-  return array;
-}
 // Создания массива из 10 сгенерированных JS-объектов
-// eslint-disable-next-line no-unused-vars
 const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
+window.console.log(similarOffers);
