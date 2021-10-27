@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const TITLES = ['Выбор квартир', 'Большая светлая квартира', 'Маленькая уютная квартира', 'Квартира в спальном районе'];
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHEKIN = ['12.00', '13.00', '14.00'];
@@ -14,8 +15,8 @@ const OFFERS_AMOUNT = 10;
 const createOffer = () => {
   let avatarValue = getRandomNumber(1, 10);
   if (avatarValue < 10) {
-    avatarValue = '0' + avatarValue;
-  };
+    avatarValue = `0${  avatarValue}`;
+  }
   const locationLat = getRandomLocation (35.65000, 35.70000);
   const locationLng = getRandomLocation (139.70000, 139.80000);
   return {
@@ -60,19 +61,10 @@ function getRandomLocation(min, max, digits = 5) {
 const getRandomArrayElement = (elements) =>
   elements[getRandomNumber(0, elements.length - 1)];
 
-function getRandomArrayNewElement(element) {
-  const indexElement= getRandomNumber(0, element.length - 1);
-  const elementReturn = element[indexElement];
-  if (element.length > 1) {
-    element = element.splice (indexElement, 1);
-  }
-  return elementReturn;
-}
-
 function getRandomArray(arrayData) {
-  const featuresCount = getRandomNumber(1, arrayData.length);
+  const counter = getRandomNumber(1, arrayData.length);
   const array = [];
-  for (let ind = 0; ind < featuresCount; ind++) {
+  for (let index = 0; index < counter; index++) {
     const el = getRandomArrayElement(arrayData);
     if (!array.includes(el)) {
       array.push(el);
@@ -81,5 +73,5 @@ function getRandomArray(arrayData) {
   return array;
 }
 // Создания массива из 10 сгенерированных JS-объектов
+// eslint-disable-next-line no-unused-vars
 const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
-console.log(similarOffers);
