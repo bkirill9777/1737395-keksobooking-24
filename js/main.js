@@ -15,7 +15,7 @@ const createOffer = () => {
   let avatarValue = getRandomNumber(1, 10);
   if (avatarValue < 10) {
     avatarValue = '0' + avatarValue;
-  }
+  };
   const locationLat = getRandomLocation (35.65000, 35.70000);
   const locationLng = getRandomLocation (139.70000, 139.80000);
   return {
@@ -31,9 +31,9 @@ const createOffer = () => {
       guests: getRandomNumber(0, 6),
       chekin: CHEKIN[getRandomNumber(0, CHEKIN.length-1)],
       chekout: CHECKOUT[getRandomNumber(0, CHECKOUT.length-1)],
-      features: FEATURES[getRandomNumber(0, FEATURES.length-1)],
+      features: getRandomArray(FEATURES),
       description: DESCRIPTIONS[getRandomNumber(0, DESCRIPTIONS.length-1)],
-      photos: PHOTOS[getRandomNumber(0, PHOTOS.length-1)],
+      photos: getRandomArray(PHOTOS),
     },
     location: {
       lat: locationLat,
@@ -41,9 +41,7 @@ const createOffer = () => {
     },
   };
 };
-// Функция для создания массива из 10 сгенерированных JS-объектов
-const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
-console.log(similarOffers);
+
 // Основная функция генерации случайных чисел
 function getRandomNumber(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -58,3 +56,30 @@ function getRandomLocation(min, max, digits = 5) {
   const result = Math.random() * (upper - lower) + lower;
   return result.toFixed(digits);
 }
+// Функции которые исключают дубликаты
+const getRandomArrayElement = (elements) =>
+  elements[getRandomNumber(0, elements.length - 1)];
+
+function getRandomArrayNewElement(element) {
+  const indexElement= getRandomNumber(0, element.length - 1);
+  const elementReturn = element[indexElement];
+  if (element.length > 1) {
+    element = element.splice (indexElement, 1);
+  }
+  return elementReturn;
+}
+
+function getRandomArray(arrayData) {
+  const featuresCount = getRandomNumber(1, arrayData.length);
+  const array = [];
+  for (let ind = 0; ind < featuresCount; ind++) {
+    const el = getRandomArrayElement(arrayData);
+    if (!array.includes(el)) {
+      array.push(el);
+    }
+  }
+  return array;
+}
+// Создания массива из 10 сгенерированных JS-объектов
+const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
+console.log(similarOffers);
