@@ -1,15 +1,5 @@
 import {similarOffers} from './data.js';
 
-/*// из main.js перенес данные по генерации объектов
-const OFFERS_AMOUNT = 10;
-// Создания массива из 10 сгенерированных JS-объектов
-const similarOffers = () => Array.from({length: OFFERS_AMOUNT}, createOffer);
-*/
-/*
-const userOffers = document.querySelector('.card');
-console.log(userOffers);
-*/
-
 const mapCanvas = document.querySelector('.map__canvas');
 const offerCard = document.querySelector('#card')
   .content
@@ -42,7 +32,7 @@ const renderCard = (card) => {
   hidesData(offerCloneCard.querySelector('.popup__text--price'), 'textContent', `${card.offer.price} ₽/ночь`);
   hidesData(offerCloneCard.querySelector('.popup__type'), 'textContent', houseTypes[card.offer.type]);
   hidesData(offerCloneCard.querySelector('.popup__text--capacity'),'textContent', `${card.offer.rooms} комнаты для ${card.offer.guests} гостей`);
-  hidesData(offerCloneCard.querySelector('.popup__text--time'), 'textContent', `Заезд после ${card.offer.checkin}, выезд до ${card.offer.checkout}`);
+  hidesData(offerCloneCard.querySelector('.popup__text--time'), 'textContent', `Заезд после ${card.offer.chekin}, выезд до ${card.offer.chekout}`);
   hidesData(offerCloneCard.querySelector('.popup__description'), 'textContent', card.offer.description);
   hidesData(offerCloneCard.querySelector('.popup__avatar'), 'src', card.author.avatar);
 
@@ -58,9 +48,18 @@ const renderCard = (card) => {
     photosListEl.appendChild(clone);
   });
   // Выведим все доступные удобства в объявлении
+  const userFeature = card.offer.features;
+  const optionFeatures = offerCloneCard.querySelectorAll('.popup__feature');
+  for (let i = 0; i < optionFeatures.length; i++) {
+    optionFeatures[i].classList.add('hidden');
+  }
+  userFeature.forEach((currentFeature) => {
+    const featuresList =`.popup__feature--${currentFeature}`;
+    offerCloneCard.querySelector(featuresList).classList.remove('hidden');
+    offerCloneCard.querySelector('.popup__features').classList.remove('hidden');
+  });
 
   return offerCloneCard;
 };
-
 
 mapCanvas.appendChild(renderCard(similarOffers[1]));
