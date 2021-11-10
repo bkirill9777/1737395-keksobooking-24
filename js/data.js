@@ -11,6 +11,7 @@ const PHOTOS = [
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'http://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
+const OFFERS_AMOUNT = 10;
 
 const createOffer = () => {
   let avatarValue = getRandomNumber(1, 10);
@@ -43,4 +44,8 @@ const createOffer = () => {
   };
 };
 
-export {createOffer};
+// Создания массива из 10 сгенерированных JS-объектов
+const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
+// window.console.log(similarOffers);
+// console.log(similarOffers);
+export {similarOffers};
