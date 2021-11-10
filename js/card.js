@@ -50,8 +50,8 @@ const renderCard = (card) => {
   // Выведим все доступные удобства в объявлении
   const userFeature = card.offer.features;
   const optionFeatures = offerCloneCard.querySelectorAll('.popup__feature');
-  for (let i = 0; i < optionFeatures.length; i++) {
-    optionFeatures[i].classList.add('hidden');
+  for (let index = 0; index < optionFeatures.length; index++) {
+    optionFeatures[index].classList.add('hidden');
   }
   userFeature.forEach((currentFeature) => {
     const featuresList =`.popup__feature--${currentFeature}`;
