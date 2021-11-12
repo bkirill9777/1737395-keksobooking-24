@@ -47,8 +47,6 @@ const renderCard = (card) => {
   // Выведим все доступные удобства в объявлении
   const userFeature = card.offer.features;
   const optionFeatures = offerCloneCard.querySelectorAll('.popup__feature');
-  // для итерации по массиву optionFeatures используй forEach
-
   optionFeatures.forEach((optionFeature) => {
     optionFeature.classList.add('hidden');
   });
