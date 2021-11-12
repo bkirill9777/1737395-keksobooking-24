@@ -1,6 +1,3 @@
-import {similarOffers} from './data.js';
-
-const mapCanvas = document.querySelector('.map__canvas');
 const offerCard = document.querySelector('#card')
   .content
   .querySelector('.popup');
@@ -56,10 +53,9 @@ const renderCard = (card) => {
   userFeature.forEach((currentFeature) => {
     const featuresList =`.popup__feature--${currentFeature}`;
     offerCloneCard.querySelector(featuresList).classList.remove('hidden');
-    offerCloneCard.querySelector('.popup__features').classList.remove('hidden');
   });
 
   return offerCloneCard;
 };
 
-mapCanvas.appendChild(renderCard(similarOffers[1]));
+export {renderCard};
