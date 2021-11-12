@@ -47,14 +47,15 @@ const renderCard = (card) => {
   // Выведим все доступные удобства в объявлении
   const userFeature = card.offer.features;
   const optionFeatures = offerCloneCard.querySelectorAll('.popup__feature');
-  for (let index = 0; index < optionFeatures.length; index++) {
-    optionFeatures[index].classList.add('hidden');
-  }
+  // для итерации по массиву optionFeatures используй forEach
+
+  optionFeatures.forEach((optionFeature) => {
+    optionFeature.classList.add('hidden');
+  });
   userFeature.forEach((currentFeature) => {
     const featuresList =`.popup__feature--${currentFeature}`;
     offerCloneCard.querySelector(featuresList).classList.remove('hidden');
   });
-
   return offerCloneCard;
 };
 
