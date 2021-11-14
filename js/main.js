@@ -12,4 +12,4 @@ window.console.log(similarOffers);
 const mapCanvas = document.querySelector('.map__canvas');
 mapCanvas.appendChild(renderCard(similarOffers[1]));
 
-toggleState(mapCanvas);
+toggleState(false);
