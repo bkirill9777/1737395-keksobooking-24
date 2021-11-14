@@ -7,8 +7,9 @@ const OFFERS_AMOUNT = 10;
 const similarOffers = Array.from({length: OFFERS_AMOUNT}, createOffer);
 window.console.log(similarOffers);
 // console.log(similarOffers);
-toggleState();
+
 
 const mapCanvas = document.querySelector('.map__canvas');
 mapCanvas.appendChild(renderCard(similarOffers[1]));
 
+toggleState(mapCanvas);
